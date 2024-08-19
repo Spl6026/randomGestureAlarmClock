@@ -1,9 +1,9 @@
 import sys
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QListWidgetItem
-from PyQt5.QtCore import QTimer, QTime, QDate, QUrl
-from mainUI import Ui_Main
-from editFunc import AlarmDialog
+from PyQt5.QtCore import QThread, pyqtSignal, QTimer, QTime, QDate, QUrl
+from UI.mainUI import Ui_Main
+from UI.editFunc import AlarmDialog
 
 
 class Alarm:
@@ -61,7 +61,7 @@ class AlarmApp(QWidget, Ui_Main):
         alarmBox = QMessageBox(self)
         player = QMediaPlayer()
         playlist = QMediaPlaylist(player)
-        playlist.addMedia(QMediaContent(QUrl.fromLocalFile("../Sound/siri_end.mp3")))
+        playlist.addMedia(QMediaContent(QUrl.fromLocalFile("./Sound/siri_end.mp3")))
         playlist.setPlaybackMode(QMediaPlaylist.Loop)
         player.setPlaylist(playlist)
         player.setVolume(100)  # 設定音量
@@ -71,6 +71,7 @@ class AlarmApp(QWidget, Ui_Main):
         alarmBox.setText('時間到了！')
         alarmBox.setStandardButtons(QMessageBox.Ok)
         alarmBox.exec_()
+        player.stop()
 
     def __init__(self):
         super().__init__()

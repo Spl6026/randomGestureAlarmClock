@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QDialog
-from editUI import Ui_Edit
+from UI.editUI import Ui_Edit
 
 
 class AlarmDialog(QDialog, Ui_Edit):
