@@ -11,22 +11,47 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>鬧鐘程式</string>
+   <string>翰寶王柏盛十分-隨機手勢鬧鐘</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <item>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
     <widget class="QListWidget" name="alarmList">
      <property name="enabled">
       <bool>true</bool>
      </property>
     </widget>
    </item>
-   <item>
+   <item row="2" column="0">
     <widget class="QPushButton" name="addButton">
      <property name="text">
       <string>新增鬧鐘</string>
      </property>
     </widget>
+   </item>
+   <item row="1" column="0">
+    <layout class="QHBoxLayout" name="Detected">
+     <item>
+      <widget class="QPushButton" name="startButton">
+       <property name="text">
+        <string>開始偵測</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="statusButton">
+       <property name="text">
+        <string>狀態</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="stopButton">
+       <property name="text">
+        <string>停止偵測</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>

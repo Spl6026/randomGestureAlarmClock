@@ -58,7 +58,7 @@ class AlarmApp(QWidget, Ui_Main):
 
     def ringAlarm(self, alarm):
         alarm.ring = True
-        alarmBox = QMessageBox(self)
+        self.alarmBox = QMessageBox(self)
         player = QMediaPlayer()
         playlist = QMediaPlaylist(player)
         playlist.addMedia(QMediaContent(QUrl.fromLocalFile("./Sound/siri_end.mp3")))
@@ -67,10 +67,10 @@ class AlarmApp(QWidget, Ui_Main):
         player.setVolume(100)  # 設定音量
         player.play()  # 播放音檔
 
-        alarmBox.setWindowTitle('鬧鐘響鈴中')
-        alarmBox.setText('時間到了！')
-        alarmBox.setStandardButtons(QMessageBox.Ok)
-        alarmBox.exec_()
+        self.alarmBox.setWindowTitle('鬧鐘響鈴中')
+        self.alarmBox.setText('時間到了！')
+        self.alarmBox.setStandardButtons(QMessageBox.Ok)
+        self.alarmBox.exec_()
         player.stop()
 
     def __init__(self):

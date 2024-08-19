@@ -15,10 +15,45 @@ import time
 
 
 class AlarmClock(AlarmApp):
+    def startDetection(self):
+        self.running = True
+        self.startButton.setEnabled(False)
+        self.stopButton.setEnabled(True)
+        self.statusButton.setText('Detecting...')
+        self.statusButton.setStyleSheet('background-color: yellow')
+
+        self.thread = DetectionThread()
+        self.thread.data_signal.connect(self.updateStatus)
+        self.thread.start()
+
+    def stopDetection(self):
+        self.running = False
+        self.startButton.setEnabled(True)
+        self.stopButton.setEnabled(False)
+        self.thread.stop()
+        self.statusButton.setText('Status: Not detecting')
+        self.statusButton.setStyleSheet('background-color: red')
+
+    def updateStatus(self, total_energy):
+        if total_energy > 40000:
+            self.statusButton.setStyleSheet('background-color: yellow')
+            self.statusButton.setText('Status: Object Detected')
+            self.handleAlarmBox(1)
+        else:
+            self.statusButton.setStyleSheet('background-color: red')
+            self.statusButton.setText('Status: No Object')
+            self.handleAlarmBox(0)
+
+    def handleAlarmBox(self, detected):
+        if detected and self.alarmBox:
+            self.alarmBox.close()
+
     def __init__(self):
         super().__init__()
-        
-        #準備搬function
+        self.running = False
+        self.startButton.clicked.connect(self.startDetection)
+        self.stopButton.clicked.connect(self.stopDetection)
+        self.stopButton.setEnabled(False)
 
 
 class DetectionThread(QtCore.QThread):
