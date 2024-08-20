@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Edit(object):
     def setupUi(self, Edit):
         Edit.setObjectName("Edit")
-        Edit.resize(300, 100)
+        Edit.resize(271, 140)
         self.verticalLayout = QtWidgets.QVBoxLayout(Edit)
         self.verticalLayout.setObjectName("verticalLayout")
         self.timeEdit = QtWidgets.QTimeEdit(Edit)

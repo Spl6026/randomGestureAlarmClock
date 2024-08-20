@@ -6,54 +6,71 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>300</width>
+    <width>260</width>
     <height>300</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>翰寶王柏盛十分-隨機手勢鬧鐘</string>
   </property>
-  <layout class="QGridLayout" name="gridLayout">
-   <item row="0" column="0">
-    <widget class="QListWidget" name="alarmList">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="0">
-    <widget class="QPushButton" name="addButton">
-     <property name="text">
-      <string>新增鬧鐘</string>
-     </property>
-    </widget>
-   </item>
-   <item row="1" column="0">
-    <layout class="QHBoxLayout" name="Detected">
-     <item>
-      <widget class="QPushButton" name="startButton">
-       <property name="text">
-        <string>開始偵測</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="statusButton">
-       <property name="text">
-        <string>狀態</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QPushButton" name="stopButton">
-       <property name="text">
-        <string>停止偵測</string>
-       </property>
-      </widget>
-     </item>
-    </layout>
-   </item>
-  </layout>
+  <widget class="QPushButton" name="addButton">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>85</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>＋</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="alarmList">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>110</y>
+     <width>221</width>
+     <height>171</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="status">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>85</y>
+     <width>20</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string/>
+   </property>
+  </widget>
+  <widget class="QLCDNumber" name="currentTime">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>220</width>
+     <height>80</height>
+    </rect>
+   </property>
+   <property name="lineWidth">
+    <number>0</number>
+   </property>
+   <property name="digitCount">
+    <number>8</number>
+   </property>
+   <property name="segmentStyle">
+    <enum>QLCDNumber::Filled</enum>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

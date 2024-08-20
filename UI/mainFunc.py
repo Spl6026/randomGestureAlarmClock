@@ -1,7 +1,7 @@
 import sys
 from PyQt5.QtMultimedia import QMediaPlaylist, QMediaPlayer, QMediaContent
 from PyQt5.QtWidgets import QApplication, QWidget, QMessageBox, QListWidgetItem
-from PyQt5.QtCore import QThread, pyqtSignal, QTimer, QTime, QDate, QUrl
+from PyQt5.QtCore import QTimer, QTime, QDate, QUrl
 from UI.mainUI import Ui_Main
 from UI.editFunc import AlarmDialog
 
@@ -46,6 +46,7 @@ class AlarmApp(QWidget, Ui_Main):
     def checkAlarms(self):
         update = (QDate.currentDate().dayOfWeek() - 1) % 7  # mon = 1, sun = 7 -> day - 1
         uptime = QTime.currentTime()
+        self.currentTime.display(uptime.toString('hh:mm:ss'))
         for alarm in self.alarms:
             alarmtime = alarm.time
             if alarm.ring and (
@@ -77,6 +78,8 @@ class AlarmApp(QWidget, Ui_Main):
         super().__init__()
         self.setupUi(self)
         self.alarms = []
+        self.alarmBox = None
+        self.currentTime.display('00:00:00')
 
         # 設定按鈕和清單的事件處理
         self.addButton.clicked.connect(self.addAlarm)

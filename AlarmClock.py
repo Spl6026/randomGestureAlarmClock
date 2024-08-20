@@ -4,7 +4,7 @@ import shutil
 import sys
 
 import numpy as np
-from PyQt5 import QtWidgets, QtCore, QtGui
+from PyQt5 import QtWidgets, QtCore
 
 from KKT_Module.ksoc_global import kgl
 from KKT_Module.Configs import SettingConfigs
@@ -17,31 +17,22 @@ import time
 class AlarmClock(AlarmApp):
     def startDetection(self):
         self.running = True
-        self.startButton.setEnabled(False)
-        self.stopButton.setEnabled(True)
-        self.statusButton.setText('Detecting...')
-        self.statusButton.setStyleSheet('background-color: yellow')
-
+        self.status.setStyleSheet('background-color: yellow')  # detecting
         self.thread = DetectionThread()
-        self.thread.data_signal.connect(self.updateStatus)
+        self.thread.dataSignal.connect(self.updateStatus)
         self.thread.start()
 
     def stopDetection(self):
         self.running = False
-        self.startButton.setEnabled(True)
-        self.stopButton.setEnabled(False)
         self.thread.stop()
-        self.statusButton.setText('Status: Not detecting')
-        self.statusButton.setStyleSheet('background-color: red')
+        self.status.setStyleSheet('background-color: red')  # Not detecting
 
     def updateStatus(self, total_energy):
         if total_energy > 40000:
-            self.statusButton.setStyleSheet('background-color: yellow')
-            self.statusButton.setText('Status: Object Detected')
+            self.status.setStyleSheet('background-color: yellow')  # object detected
             self.handleAlarmBox(1)
         else:
-            self.statusButton.setStyleSheet('background-color: red')
-            self.statusButton.setText('Status: No Object')
+            self.status.setStyleSheet('background-color: green')  # no object
             self.handleAlarmBox(0)
 
     def handleAlarmBox(self, detected):
@@ -51,13 +42,11 @@ class AlarmClock(AlarmApp):
     def __init__(self):
         super().__init__()
         self.running = False
-        self.startButton.clicked.connect(self.startDetection)
-        self.stopButton.clicked.connect(self.stopDetection)
-        self.stopButton.setEnabled(False)
+        self.startDetection()
 
 
 class DetectionThread(QtCore.QThread):
-    data_signal = QtCore.pyqtSignal(int)
+    dataSignal = QtCore.pyqtSignal(int)
 
     def __init__(self):
         super().__init__()
@@ -85,7 +74,7 @@ class DetectionThread(QtCore.QThread):
             power = np.abs(res[0])
             total_energy = np.sum(power)  # 計算總能量
 
-            self.data_signal.emit(total_energy)
+            self.dataSignal.emit(total_energy)
 
 
 def connect():
