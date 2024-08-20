@@ -27,6 +27,9 @@ PyMsgBox==1.0.9
 pyparsing==3.0.8
 pyperclip==1.8.2
 pyqt-led==0.0.6
+pyqt5==5.15.11
+pyqt5-qt5==5.15.2
+pyqt5-sip==12.15.0
 pyqtgraph==0.12.3
 pyrealsense2==2.49.0.3474
 PyRect==0.1.4
@@ -46,8 +49,10 @@ six==1.16.0
 sklearn==0.0
 threadpoolctl==3.0.0
 tifffile==2022.4.8
+torch==1.8.0
+torchaudio==0.8.0
+torchvision==0.9.0
 typing-extensions==3.10.0.2
 urllib3==1.26.7
 websocket-client==1.2.1
 wincertstore==0.2
-PyQt5
